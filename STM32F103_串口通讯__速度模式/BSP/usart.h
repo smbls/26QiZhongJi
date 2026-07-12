@@ -17,8 +17,14 @@ extern __IO bool rxFrameFlag;
 extern __IO uint8_t rxCmd[FIFO_SIZE];
 extern __IO uint8_t rxCount;
 
+extern __IO bool rxFrameFlag2;
+extern __IO uint8_t rxCmd2[FIFO_SIZE];
+extern __IO uint8_t rxCount2;
+
 void usart_SendCmd(__IO uint8_t *cmd, uint8_t len);
 void usart_SendByte(uint16_t data);
+void usart2_SendCmd(__IO uint8_t *cmd, uint8_t len);
+void usart2_SendByte(uint16_t data);
 
 /**********************************************************
 ***	��Ӧ�ȴ���(����ʱ�������ֹ����)
@@ -29,6 +35,14 @@ void usart_SendByte(uint16_t data);
 		if(++__to > 1000000) { break; } \
 	} \
 	rxFrameFlag = false; \
+} while(0)
+
+#define WAIT_RESPONSE2()	do { \
+	uint32_t __to = 0; \
+	while(rxFrameFlag2 == false) { \
+		if(++__to > 1000000) { break; } \
+	} \
+	rxFrameFlag2 = false; \
 } while(0)
 
 #endif

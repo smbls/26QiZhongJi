@@ -1,20 +1,21 @@
 #include "fifo.h"
 
 /**********************************************************
-***	Emm_V5.0²½½ø±Õ»·¿ØÖÆÀý³Ì
-***	±àÐ´×÷Õß£ºZHANGDATOU
-***	¼¼ÊõÖ§³Ö£ºÕÅ´óÍ·±Õ»·ËÅ·þ
-***	ÌÔ±¦µêÆÌ£ºhttps://zhangdatou.taobao.com
-***	CSDN²©¿Í£ºhttp s://blog.csdn.net/zhangdatou666
-***	qq½»Á÷Èº£º262438510
+***	Emm_V5.0ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+***	ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ß£ï¿½ZHANGDATOU
+***	ï¿½ï¿½ï¿½ï¿½Ö§ï¿½Ö£ï¿½ï¿½Å´ï¿½Í·ï¿½Õ»ï¿½ï¿½Å·ï¿½
+***	ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½https://zhangdatou.taobao.com
+***	CSDNï¿½ï¿½ï¿½Í£ï¿½http s://blog.csdn.net/zhangdatou666
+***	qqï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½262438510
 **********************************************************/
 
 __IO FIFO_t rxFIFO = {0};
+__IO FIFO_t rxFIFO2 = {0};
 
 /**
-	* @brief   ³õÊ¼»¯¶ÓÁÐ
-	* @param   ÎÞ
-	* @retval  ÎÞ
+	* @brief   ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	* @param   ï¿½ï¿½
+	* @retval  ï¿½ï¿½
 	*/
 void initQueue(void)
 {
@@ -23,9 +24,9 @@ void initQueue(void)
 }
 
 /**
-	* @brief   Èë¶Ó
-	* @param   ÎÞ
-	* @retval  ÎÞ
+	* @brief   ï¿½ï¿½ï¿½
+	* @param   ï¿½ï¿½
+	* @retval  ï¿½ï¿½
 	*/
 void fifo_enQueue(uint16_t data)
 {
@@ -40,9 +41,9 @@ void fifo_enQueue(uint16_t data)
 }
 
 /**
-	* @brief   ³ö¶Ó
-	* @param   ÎÞ
-	* @retval  ÎÞ
+	* @brief   ï¿½ï¿½ï¿½ï¿½
+	* @param   ï¿½ï¿½
+	* @retval  ï¿½ï¿½
 	*/
 uint16_t fifo_deQueue(void)
 {
@@ -61,9 +62,9 @@ uint16_t fifo_deQueue(void)
 }
 
 /**
-	* @brief   ÅÐ¶Ï¿Õ¶ÓÁÐ
-	* @param   ÎÞ
-	* @retval  ÎÞ
+	* @brief   ï¿½Ð¶Ï¿Õ¶ï¿½ï¿½ï¿½
+	* @param   ï¿½ï¿½
+	* @retval  ï¿½ï¿½
 	*/
 bool fifo_isEmpty(void)
 {
@@ -76,9 +77,9 @@ bool fifo_isEmpty(void)
 }
 
 /**
-	* @brief   ¼ÆËã¶ÓÁÐ³¤¶È
-	* @param   ÎÞ
-	* @retval  ÎÞ
+	* @brief   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½
+	* @param   ï¿½ï¿½
+	* @retval  ï¿½ï¿½
 	*/
 uint16_t fifo_queueLength(void)
 {
@@ -89,5 +90,58 @@ uint16_t fifo_queueLength(void)
 	else
 	{
 		return (FIFO_SIZE - rxFIFO.ptrRead + rxFIFO.ptrWrite);
+	}
+}
+
+/**********************************************************
+*** FIFO2ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
+**********************************************************/
+void fifo_enQueue2(uint16_t data)
+{
+	rxFIFO2.buffer[rxFIFO2.ptrWrite] = data;
+
+	++rxFIFO2.ptrWrite;
+
+	if(rxFIFO2.ptrWrite >= FIFO_SIZE)
+	{
+		rxFIFO2.ptrWrite = 0;
+	}
+}
+
+uint16_t fifo_deQueue2(void)
+{
+	uint16_t element = 0;
+
+	element = rxFIFO2.buffer[rxFIFO2.ptrRead];
+
+	++rxFIFO2.ptrRead;
+
+	if(rxFIFO2.ptrRead >= FIFO_SIZE)
+	{
+		rxFIFO2.ptrRead = 0;
+	}
+
+	return element;
+}
+
+bool fifo_isEmpty2(void)
+{
+	if(rxFIFO2.ptrRead == rxFIFO2.ptrWrite)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+uint16_t fifo_queueLength2(void)
+{
+	if(rxFIFO2.ptrRead <= rxFIFO2.ptrWrite)
+	{
+		return (rxFIFO2.ptrWrite - rxFIFO2.ptrRead);
+	}
+	else
+	{
+		return (FIFO_SIZE - rxFIFO2.ptrRead + rxFIFO2.ptrWrite);
 	}
 }

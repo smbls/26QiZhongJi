@@ -4,12 +4,12 @@
 #include "stm32f10x.h"
 
 /**********************************************************
-***	Emm_V5.0²½½ø±Õ»·¿ØÖÆÀý³Ì
-***	±àÐ´×÷Õß£ºZHANGDATOU
-***	¼¼ÊõÖ§³Ö£ºÕÅ´óÍ·±Õ»·ËÅ·þ
-***	ÌÔ±¦µêÆÌ£ºhttps://zhangdatou.taobao.com
-***	CSDN²©¿Í£ºhttp s://blog.csdn.net/zhangdatou666
-***	qq½»Á÷Èº£º262438510
+***	Emm_V5.0ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+***	ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ß£ï¿½ZHANGDATOU
+***	ï¿½ï¿½ï¿½ï¿½Ö§ï¿½Ö£ï¿½ï¿½Å´ï¿½Í·ï¿½Õ»ï¿½ï¿½Å·ï¿½
+***	ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½https://zhangdatou.taobao.com
+***	CSDNï¿½ï¿½ï¿½Í£ï¿½http s://blog.csdn.net/zhangdatou666
+***	qqï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½262438510
 **********************************************************/
 
 #define 	FIFO_SIZE   128
@@ -20,11 +20,17 @@ typedef struct {
 }FIFO_t;
 
 extern __IO FIFO_t rxFIFO;
+extern __IO FIFO_t rxFIFO2;
 
 void fifo_initQueue(void);
 void fifo_enQueue(uint16_t data);
 uint16_t fifo_deQueue(void);
 bool fifo_isEmpty(void);
 uint16_t fifo_queueLength(void);
+
+void fifo_enQueue2(uint16_t data);
+uint16_t fifo_deQueue2(void);
+bool fifo_isEmpty2(void);
+uint16_t fifo_queueLength2(void);
 
 #endif
