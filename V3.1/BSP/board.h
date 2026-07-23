@@ -2,6 +2,8 @@
 #define __BOARD_H
 
 #include "stm32f10x.h"
+#include "stm32f10x_tim.h"
+#include "stm32f10x_it.h"
 
 /**********************************************************
 ***	Emm_V5.0步进闭环控制例程
@@ -11,6 +13,7 @@
 ***	CSDN博客：http s://blog.csdn.net/zhangdatou666
 ***	qq交流群：262438510
 **********************************************************/
+extern volatile uint32_t system_ms;
 
 void nvic_init(void);
 void clock_init(void);

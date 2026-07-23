@@ -31,18 +31,18 @@ void usart2_SendByte(uint16_t data);
 **********************************************************/
 #define WAIT_RESPONSE()		do { \
 	uint32_t __to = 0; \
+	rxFrameFlag = false; \
 	while(rxFrameFlag == false) { \
 		if(++__to > 1000000) { break; } \
 	} \
-	rxFrameFlag = false; \
 } while(0)
 
 #define WAIT_RESPONSE2()	do { \
 	uint32_t __to = 0; \
+	rxFrameFlag2 = false; \
 	while(rxFrameFlag2 == false) { \
 		if(++__to > 1000000) { break; } \
 	} \
-	rxFrameFlag2 = false; \
 } while(0)
 
 #endif

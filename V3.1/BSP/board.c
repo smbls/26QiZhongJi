@@ -1,13 +1,27 @@
 #include "board.h"
 
-/**********************************************************
-***	Emm_V5.0�����ջ���������
-***	��д���ߣ�ZHANGDATOU
-***	����֧�֣��Ŵ�ͷ�ջ��ŷ�
-***	�Ա����̣�https://zhangdatou.taobao.com
-***	CSDN���ͣ�http s://blog.csdn.net/zhangdatou666
-***	qq����Ⱥ��262438510
-**********************************************************/
+/* 初始化 TIM4 为 1ms 自由运行计数器（非阻塞用） */
+void timer4_init(void)
+  {
+      RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+
+      TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+      TIM_TimeBaseStructure.TIM_Prescaler = 36 - 1;       // 36MHz / 36 = 1MHz
+      TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+      TIM_TimeBaseStructure.TIM_Period = 1000 - 1;         // 1MHz / 1000 = 1kHz = 1ms
+      TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+      TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+
+      TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
+      TIM_Cmd(TIM4, ENABLE);
+
+      NVIC_InitTypeDef NVIC_InitStructure;
+      NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+      NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+      NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+      NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+      NVIC_Init(&NVIC_InitStructure);
+  }
 
 /**
 	* @brief   ����NVIC������
@@ -16,7 +30,7 @@
 	*/
 void nvic_init(void)
 {
-	// 4bit��ռ���ȼ�λ
+	
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
@@ -37,16 +51,13 @@ void nvic_init(void)
 	*/
 void clock_init(void)
 {
-	// ʹ��GPIOA��AFIO����ʱ��
+	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB | RCC_APB2Periph_AFIO, ENABLE);
 
-	// ʹ��USART1����ʱ��
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
-	// ʹ��USART2����ʱ��(USART2������APB1)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 
-	// ����JTAG
 	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
 }
 
@@ -152,4 +163,5 @@ void board_init(void)
 	nvic_init();
 	clock_init();
 	usart_init();
+	timer4_init();
 }

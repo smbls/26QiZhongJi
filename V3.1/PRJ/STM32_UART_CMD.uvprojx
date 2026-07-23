@@ -479,6 +479,16 @@
               <FileType>5</FileType>
               <FilePath>..\DRIVERS\delay.h</FilePath>
             </File>
+            <File>
+              <FileName>button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVERS\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>button.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\DRIVERS\button.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -503,6 +513,66 @@
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_dma.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_exti.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\STM32F10x_StdPeriph_Lib_V3.5.0\inc\stm32f10x_tim.h</FilePath>
             </File>
           </Files>
         </Group>
